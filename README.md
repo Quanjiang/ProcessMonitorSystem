@@ -10,7 +10,7 @@ I write some script for deal some business in workday. Some time I just forget w
 
 ## Baisc
 
-Python3.x with Flask for web, apscheduler
+Python3.x with Flask for web, apscheduler for process and scheduler control. The gunicorn for deploy on Openshift/any server
 
 https://github.com/agronholm/apscheduler
 http://flask.pocoo.org/
@@ -51,5 +51,10 @@ set the rule to trigger the hook (http access other pls like jenkins)
 
 For different script/process. you can define your own style dashboard by use module.
 It design in very easy way.
+
+
+## File list
+
+* wsgi.py # openshift python entiry point: see here:https://developers.openshift.com/languages/python/flask.html Step 4:Update Entry Point
 
 ## END
