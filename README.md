@@ -31,7 +31,7 @@ http://flask.pocoo.org/
 
 ### script/process need todo:
 
-* generate *pms.conf* file under it's folder.
+* generate *pms.json* file under it's folder.
 
 ### put the path of script/process folder into : monitor_list file.
 
@@ -57,4 +57,7 @@ It design in very easy way.
 
 * wsgi.py # openshift python entiry point: see here:https://developers.openshift.com/languages/python/flask.html Step 4:Update Entry Point
 
-## END
+## TODO
+
+* Add the test mode. - 
+*

@@ -1,4 +1,4 @@
-#!/mnt/c/mywork/GlobalWork/gitlab/ProcessMonitorSystem/venv/bin/python
+#!/mnt/c/mywork/GlobalWork/gitlab/ProcessMonitorSystem/virtenv/bin/python
 
 import sys
 import getopt

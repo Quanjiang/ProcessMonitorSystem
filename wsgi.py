@@ -20,7 +20,7 @@ try:
 except IOError:
   pass
 
-from main import app as application
+from src.routes import app as application
 
 if 'OPENSHIFT_APP_NAME' in os.environ:              #are we on OPENSHIFT?
     ip = os.environ['OPENSHIFT_PYTHON_IP']

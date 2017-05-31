@@ -1,0 +1,14 @@
+load_info={
+  "name":"the name of the script",
+  "version":"1.0",
+  "email":["a@a.c"],
+  "log_file_list":[],
+  "ASPScheduler":{
+    "type":"interval", #"date","cron"
+    "value":{"2017 05 01"},
+  },
+  "product":{
+    "deploy":"ls",
+    "run":"ls -la /",
+  },
+}

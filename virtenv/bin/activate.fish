@@ -36,7 +36,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/mnt/c/mywork/GlobalWork/gitlab/ProcessMonitorSystem/venv"
+set -gx VIRTUAL_ENV "/mnt/c/mywork/GlobalWork/gitlab/ProcessMonitorSystem/virtenv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
