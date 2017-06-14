@@ -7,10 +7,10 @@ $(document).ready(function(){
             }
         })(jQuery);
     var name_id = $.getUrlParam('name_id');
-
-    alert('ws://' + document.domain + ':' + location.port+'/')
-    var socket = io.connect('ws://' + document.domain + ':' + location.port+'/');
-    socket.on('connect', function() {
-        socket.emit('my event', {data: 'I\'m connected!'});
-    });
+    console.log('ws://' + document.domain + ':' + location.port+'/')
+    var socket = io.connect('http://' + document.domain + ':' + location.port+'/'+name_id);
+    socket.on('last_log', function(log) {
+            console.log(log)
+            $('#real_log').html($('#real_log').html()+'</br>'+log)
+        });
 });

@@ -23,7 +23,8 @@ try:
 except IOError:
     pass
 
-from src.routes import  app, socketio
+# from src.routes import  app, socketio
+import src.routes
 
 if 'OPENSHIFT_APP_NAME' in os.environ:              # are we on OPENSHIFT?
     ip = os.environ['OPENSHIFT_PYTHON_IP']
@@ -36,7 +37,7 @@ else:
 if __name__ == '__main__':
     # socketio = SocketIO(application)
     # socketio.run(application, debug=True)
-    socketio.run(app, debug=True)
+    src.routes.start()
 
     # from wsgiref.simple_server import make_server
     # httpd = make_server('localhost', 8051, app)

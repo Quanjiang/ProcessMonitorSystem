@@ -6,7 +6,7 @@ import time
 import os.path as osp
 import subprocess
 
-from src.module import db
+from module import db
 
 
 class TaskCore:

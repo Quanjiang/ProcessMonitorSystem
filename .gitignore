@@ -1,1 +1,4 @@
+./src/pms.log
+pms.log
+*/__pycache__/*
 virtenv/*

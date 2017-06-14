@@ -9,7 +9,8 @@ from apscheduler.jobstores.mongodb import MongoDBJobStore
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
 from multiprocess import Queue
-from src.module import task_core
+from module import task_core
+import threading
 import json
 
 TASK_PATH = './task'
@@ -60,22 +61,28 @@ taskobj = task_core.TaskCore(scheduler, logQueue, logobj, TASK_PATH)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app)
-# socketio.run(app)
-print('------------- after socketio')
+socketio = SocketIO(app, async_mode='threading')
 
 
 # ------------------------ Websockect --------------------------
-@socketio.on('my event')
-def handle_my_custom_event(a):
-    print('received args: ' + a)
 
+def delivery_log(tqueue):
+    while True:
+        try:
+            id, log = tqueue.get(True)
+            names = '/' + str(id)
+            socketio.emit(
+                    'last_log',
+                    '---------???',
+                    namespace=names,
+                    broadcast='true'
+                )
+            print(':: send to <{}> : {}'.format(names, str(log)))
+        except Exception as e:
+            # TODO: Add more deal here.
+            print('failed here : ', e)
 
-@socketio.on('message')
-def handle_message(message):
-    print('received message: ' + message)
-
-print('----------123 asdf')
+threading.Thread(target=delivery_log, args=(logQueue,)).start()
 
 
 # ------------------------ Page info ---------------------------
@@ -87,6 +94,13 @@ def index():
 
 @app.route('/add')
 def add():
+    logQueue.put([1, '===============\n'])
+    # socketio.emit(
+    #                 'last_log',
+    #                 '---------???',
+    #                 namespace='/1',
+    #                 broadcast='true'
+    #             )
     return render_template('add.html')
 
 
@@ -162,3 +176,11 @@ def add_job():
             taskobj.db.set_status(name_id, 'failed')
             return "{'err':5,'msg':can not start'{}',{}}".format(tpath, e)
     return "{'err':0,'msg':''}"
+
+
+def start():
+    socketio.run(app, debug=True)
+
+
+if __name__ == '__main__':
+    start()
