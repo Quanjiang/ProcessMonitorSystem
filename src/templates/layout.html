@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Flask App</title>    
-  </head>
-  <body>
-   
-    <header>
-      <div class="container">
-        <h1 class="logo">Flask App</h1>
-      </div>
-    </header> 
-     
-    <div class="container">
-      {% block content %}
-      {% endblock %}
-    </div>
-     
-  </body>
-</html>
+<!doctype html>
+<meta charset=utf-8>
+<script type="text/javascript" src="static/js/jquery-1.4.2.min.js"></script>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='pic/favicon.ico') }}">
+<script type="text/javascript" src="static/js/socket.io.min.js"></script>
+ 
+{% block head %}
+<title>{% block title %}PMS v1.0{% endblock %} </title>
+{% endblock %}
+
+<div id="page-wrapper">
+  {% block content %}
+  {% endblock %}
+  <footer class='copyright'>
+    &copy; Copyright 2017 - {{ current_year }} by <a href=http://www.studentol.xyz/>Maidi.Gu</footer>
+</div>
